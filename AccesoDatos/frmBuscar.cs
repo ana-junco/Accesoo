@@ -29,15 +29,15 @@ namespace AccesoDatos
         private DataTable getpersona(string cedula="")
         {
             string sql = "";
-            SqlConnection conexion = new SqlConnection(@"server=DESKTOP-FR5FQ7D\SQLEXPRESS; database=TI2021; Integrated Security=true");
+            SqlConnection conexion = new SqlConnection(@"DESKTOP-0IJTAIU\SQLEXPRESS; database=TI2021; Integrated Security=true");
             if (cedula == "")
             {
-                sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechadenacimiento, peso ";
+                sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechaNacimiento, peso ";
                 sql += "from Personas order by apellidos, nombres";
             }
             else
             {
-                sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechadenacimiento, peso ";
+                sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechaNacimiento, peso ";
                 sql += "from Personas where cedula=@cedula order by apellidos, nombres";
             }
 
@@ -64,7 +64,7 @@ namespace AccesoDatos
                 this.txtCedula.Text = row["cedula"].ToString();
                 this.txtNombres.Text = row["nombres"].ToString();
                 this.txtApellido.Text = row["apellidos"].ToString();
-                this.datoTiempo.Value = Convert.ToDateTime(row["fechadenacimiento"].ToString());
+                this.datoTiempo.Value = Convert.ToDateTime(row["fechaNacimiento"].ToString());
                 this.txtPeso.Text = row["peso"].ToString();
 
             }

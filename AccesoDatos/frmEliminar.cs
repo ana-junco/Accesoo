@@ -17,7 +17,7 @@ namespace AccesoDatos
         {
             InitializeComponent();
         }
-        SqlConnection conexion = new SqlConnection(@"server=DESKTOP-FR5FQ7D\SQLEXPRESS; database=TI2021; Integrated Security=true");
+        SqlConnection conexion = new SqlConnection(@"DESKTOP-0IJTAIU\SQLEXPRESS; database=TDI2021; Integrated Security=true");
 
         public void Mostrar (object sender, EventArgs e)
         {
@@ -31,13 +31,13 @@ namespace AccesoDatos
             string sql = "";
             if (cedula == "")
             {
-                sql = "select cedula, apellido, nombre, upper(apellido+ ' ' + nombre) as nombreCompleto, fechadenacimiento, peso ";
-                sql += "from personas order by apellido, nombre";
+                sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechaNacimiento, peso ";
+                sql += "from personas order by apellidos, nombres";
             }
             else
             {
-                sql = "select cedula, apellido, nombre, upper(apellido+ ' ' + nombre) as nombreCompleto, fechadenacimiento, peso ";
-                sql += "from personas where cedula=@cedula order by apellido, nombre";
+                sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechaNacimiento, peso ";
+                sql += "from personas where cedula=@cedula order by apellidos, nombres";
             }
 
             SqlCommand comando = new SqlCommand(sql, conexion);
@@ -89,9 +89,9 @@ namespace AccesoDatos
             foreach (DataRow row in dt.Rows)
             {
                 this.txtCedula.Text = row["cedula"].ToString();
-                this.txtNombres.Text = row["nombre"].ToString();
-                this.txtApellido.Text = row["apellido"].ToString();
-                this.datoFecha.Value = Convert.ToDateTime(row["fechadenacimiento"].ToString());
+                this.txtNombres.Text = row["nombres"].ToString();
+                this.txtApellido.Text = row["apellidos"].ToString();
+                this.datoFecha.Value = Convert.ToDateTime(row["fechaNacimiento"].ToString());
                 this.txtPeso.Text = row["peso"].ToString();
 
             }
@@ -104,12 +104,12 @@ namespace AccesoDatos
                 try
                 {
                     conexion.Open();
-                    string actualizar = "UPDATE personas SET apellido=@apellido, nombre=@nombre, fechadenacimiento=@fechadenacimiento, peso=@peso WHERE cedula=@cedula";
+                    string actualizar = "UPDATE personas SET apellidos=@apellidos, nombres=@nombres, fechaNacimiento=@fechaNacimiento, peso=@peso WHERE cedula=@cedula";
                     SqlCommand cmd2 = new SqlCommand(actualizar, conexion);
                     cmd2.Parameters.AddWithValue("@cedula", this.txtCedula.Text);
-                    cmd2.Parameters.AddWithValue("@apellido", this.txtApellido.Text);
-                    cmd2.Parameters.AddWithValue("@nombre", this.txtNombres.Text);
-                    cmd2.Parameters.AddWithValue("@fechadenacimiento", datoFecha.Value);
+                    cmd2.Parameters.AddWithValue("@apellidos", this.txtApellido.Text);
+                    cmd2.Parameters.AddWithValue("@nombres", this.txtNombres.Text);
+                    cmd2.Parameters.AddWithValue("@fechaNacimiento", datoFecha.Value);
                     cmd2.Parameters.AddWithValue("@peso", this.txtPeso.Text);
                     cmd2.ExecuteNonQuery();
                     MessageBox.Show("Los datos han sido actualizados");
