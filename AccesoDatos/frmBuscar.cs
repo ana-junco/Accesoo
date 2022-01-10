@@ -29,7 +29,7 @@ namespace AccesoDatos
         private DataTable getpersona(string cedula="")
         {
             string sql = "";
-            SqlConnection conexion = new SqlConnection(@"DESKTOP-0IJTAIU\SQLEXPRESS; database=TI2021; Integrated Security=true");
+            SqlConnection conexion = new SqlConnection(@"DESKTOP-0IJTAIU\SQLEXPRESS; database=TDI2021; Integrated Security=true");
             if (cedula == "")
             {
                 sql = "select cedula, apellidos, nombres, upper(apellidos+ ' ' + nombres) as nombreCompleto, fechaNacimiento, peso ";
