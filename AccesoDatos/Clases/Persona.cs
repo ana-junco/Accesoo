@@ -10,20 +10,20 @@ namespace AccesoDatos.Clases
 {
     public static class Persona
     {
-        private static string CadenaConex= @"server=DESKTOP-FR5FQ7D\SQLEXPRESS; database=TI2021; Integrated Security=true";
+        private static string CadenaConex= @"DESKTOP-0IJTAIU\SQLEXPRESS; database=TI2021; Integrated Security=true";
 
-        public static int Insertar(string cedula, string apellido, string nombre, DateTime fechadenacimiento, double peso)
+        public static int Insertar(string cedula, string apellidos, string nombres, DateTime fechaNacimiento, double peso)
         {
             SqlConnection conexion = new SqlConnection(CadenaConex);
-            string sql = "insert into personas(cedula, apellido, nombre, fechadenacimiento, peso)";
-            sql += "values(@cedula, @apellido, @nombre, @fechadenacimiento, @peso)";
+            string sql = "insert into personas(cedula, apellidos, nombres, fechaNacimiento, peso)";
+            sql += "values(@cedula, @apellidos, @nombres, @fechaNacimiento, @peso)";
             //3. ejecutar la operacion
             SqlCommand comando = new SqlCommand(sql, conexion);
-            //3.1 configurar los parametros @cedula, @apellidos, @nombres, @fechadenacimiento, @peso
+            //3.1 configurar los parametros @cedula, @apellidos, @nombres, @fechaNacimiento, @peso
             comando.Parameters.Add(new SqlParameter("@cedula", cedula));
-            comando.Parameters.Add(new SqlParameter("@apellido", apellido));
-            comando.Parameters.Add(new SqlParameter("@nombre", nombre));
-            comando.Parameters.Add(new SqlParameter("@fechadenacimiento", fechadenacimiento));
+            comando.Parameters.Add(new SqlParameter("@apellidos", apellidos));
+            comando.Parameters.Add(new SqlParameter("@nombres", nombres));
+            comando.Parameters.Add(new SqlParameter("@fechaNacimiento", fechaNacimiento));
             comando.Parameters.Add(new SqlParameter("@peso", peso));
             //3.2 abrir la conexion 
             conexion.Open();
@@ -59,8 +59,8 @@ namespace AccesoDatos.Clases
         {
             SqlConnection conexion = new SqlConnection(CadenaConex);
             string sql = "";
-            sql = "select cedula as Cédulas, upper(apellido+ ' ' + nombre) as [Nombres Completos], fechadenacimiento as [Fechas de nacimiento], peso as Peso ";
-            sql += "from personas order by apellido, nombre";
+            sql = "select cedula as Cédulas, upper(apellidos+ ' ' + nombres) as [Nombres Completos], fechaNacimiento as [Fechas de nacimiento], peso as Peso ";
+            sql += "from personas order by apellidos, nombres";
             SqlCommand comando = new SqlCommand(sql, conexion);
             SqlDataAdapter ad1 = new SqlDataAdapter(comando);
 

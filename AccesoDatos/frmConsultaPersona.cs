@@ -26,7 +26,7 @@ namespace AccesoDatos
                 {
                     this.txtMostrarCe.Text = row["Cédulas"].ToString();
                     this.txtMostrarNoyAp.Text = row["Nombres Completos"].ToString();
-                    this.datotiempos.Value = Convert.ToDateTime(row["Fechas de nacimiento"].ToString());
+                    this.datotiempos.Value = Convert.ToDateTime(row["Fecha de Nacimiento"].ToString());
                     this.txtMostrarPe.Text = row["Peso"].ToString();
                 }
 
