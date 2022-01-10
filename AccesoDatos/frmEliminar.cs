@@ -17,7 +17,7 @@ namespace AccesoDatos
         {
             InitializeComponent();
         }
-        SqlConnection conexion = new SqlConnection(@"DESKTOP-0IJTAIU\SQLEXPRESS; database=TDI2021; Integrated Security=true");
+        SqlConnection conexion = new SqlConnection(@"server=DESKTOP-0IJTAIU\SQLEXPRESS; database=TDI2021; Integrated Security=true");
 
         public void Mostrar (object sender, EventArgs e)
         {
