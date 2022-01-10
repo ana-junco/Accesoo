@@ -1,0 +1,9 @@
+Calificaciones:
+DAO ejercicios en clases 4.0
+DAO eliminar y actualizar 4.0
+DAO eliminar desde botón link 4.0
+DAO carga persona desde botón link seleccionar 3.0
+
+Observaciones:
+Falta menú de navegación
+La carga de la información de la persona se debe realizar en el load, no en el constructor
